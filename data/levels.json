@@ -1,0 +1,22 @@
+{
+  "1514666709985001666": {
+    "users": {
+      "1259562926147371079": {
+        "xp": 25,
+        "level": 1,
+        "messages": 2,
+        "lastMessage": 1784133078859,
+        "totalXp": 25
+      }
+    },
+    "roles": {},
+    "settings": {
+      "xpPerMessage": [
+        10,
+        15
+      ],
+      "baseXp": 150,
+      "multiplier": 1.5
+    }
+  }
+}

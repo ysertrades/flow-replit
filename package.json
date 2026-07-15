@@ -1,0 +1,19 @@
+{
+  "name": "@workspace/flowbot",
+  "version": "1.0.0",
+  "description": "YSER Flow - All-in-One Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "deploy": "node deploy-commands.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.4.7"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "YSER Flow",
+  "license": "MIT"
+}

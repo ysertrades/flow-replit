@@ -1,0 +1,15 @@
+{
+  "1514666709985001666": {
+    "payout": {
+      "id": "payout",
+      "embedName": "payout",
+      "label": "Payout verified",
+      "type": "role",
+      "style": "Secondary",
+      "url": null,
+      "roleId": "1515897501197008936",
+      "message": null,
+      "emoji": "<:discordownerlogo:1514687836425556021>"
+    }
+  }
+}
