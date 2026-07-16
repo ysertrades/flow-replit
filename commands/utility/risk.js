@@ -43,7 +43,7 @@ module.exports = {
       return interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setColor(0xe74c3c)
+            .setColor(0x474747)
             .setTitle('⚠️ Invalid Input')
             .setDescription(result.error)
             .setTimestamp(),
@@ -112,7 +112,6 @@ function buildRiskEmbed(result) {
         value: [
           `> **Symbol:** \`${micro.symbol}\` — ${micro.name}`,
           `> **Contracts:** \`${micro.contracts}\``,
-          `> **Risk / contract:** \`${formatUsd(micro.riskPerContract)}\``,
           `> **Total risk used:** \`${formatUsd(micro.totalRisk)}\``,
           `> **Leftover:** \`${formatUsd(riskUsd - micro.totalRisk)}\``,
         ].join('\n'),
