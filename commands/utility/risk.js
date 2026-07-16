@@ -58,7 +58,7 @@ module.exports = {
 };
 
 /**
- * Build the risk calculator embed
+ * Build the risk calculator embed with beautiful formatting
  * @param {object} result - Output from calculateRisk()
  * @returns {EmbedBuilder}
  */
@@ -67,7 +67,7 @@ function buildRiskEmbed(result) {
 
   const embed = new EmbedBuilder()
     .setColor(color)
-    .setTitle('📊  Risk Calculator')
+    .setTitle('📊 Risk Calculator')
     .setDescription(
       [
         '```',
@@ -83,7 +83,7 @@ function buildRiskEmbed(result) {
   // ── Standard contract block ────────────────────────────────────────────────
   if (standard.contracts >= 1) {
     embed.addFields({
-      name: '🔷  Standard Contract',
+      name: '🔷 Standard Contract',
       value: [
         `> **Contracts:** \`${standard.contracts}\``,
         `> **Risk / contract:** \`${formatUsd(standard.riskPerContract)}\``,
@@ -94,22 +94,23 @@ function buildRiskEmbed(result) {
     });
   } else {
     embed.addFields({
-      name: '🔷  Standard Contract',
+      name: '🔷 Standard Contract',
       value: `> ⛔ \`0 contracts\` — stop is too wide for ${formatUsd(riskUsd)} risk.\n> Minimum needed: \`${formatUsd(standard.riskPerContract)}\``,
       inline: false,
     });
   }
 
+  // ── Separator ───────────────────────────────────────────────────────────
   if (micro) {
     embed.addFields({ name: '\u200b', value: '\u200b', inline: false });
 
-    const microLabel = needsMicro ? '🔹  Micro Contract  *(fallback)*' : '🔹  Micro Contract  *(alternative)*';
+    const microLabel = needsMicro ? '🔹 Micro Contract *(fallback)*' : '🔹 Micro Contract *(alternative)*';
 
     if (micro.contracts >= 1) {
       embed.addFields({
         name: microLabel,
         value: [
-          `> **Symbol:** \`${micro.symbol}\`  —  ${micro.name}`,
+          `> **Symbol:** \`${micro.symbol}\` — ${micro.name}`,
           `> **Contracts:** \`${micro.contracts}\``,
           `> **Risk / contract:** \`${formatUsd(micro.riskPerContract)}\``,
           `> **Total risk used:** \`${formatUsd(micro.totalRisk)}\``,
@@ -126,22 +127,23 @@ function buildRiskEmbed(result) {
     }
   }
 
+  // ── Summary bar ────────────────────────────────────────────────────────
   embed.addFields({ name: '\u200b', value: '\u200b', inline: false });
 
   const summaryLines = [];
 
   if (standard.contracts >= 1 && micro?.contracts >= 1) {
-    summaryLines.push(`✅  **${standard.contracts}× ${standard.symbol}** or **${micro.contracts}× ${micro.symbol}** — both fit your risk.`);
+    summaryLines.push(`✅ **${standard.contracts}× ${standard.symbol}** or **${micro.contracts}× ${micro.symbol}** — both fit your risk.`);
   } else if (standard.contracts >= 1) {
-    summaryLines.push(`✅  Trade **${standard.contracts}× ${standard.symbol}** — within budget.`);
+    summaryLines.push(`✅ Trade **${standard.contracts}× ${standard.symbol}** — within budget.`);
   } else if (micro?.contracts >= 1) {
-    summaryLines.push(`⚡  Standard too large. Trade **${micro.contracts}× ${micro.symbol}** instead.`);
+    summaryLines.push(`⚡ Standard too large. Trade **${micro.contracts}× ${micro.symbol}** instead.`);
   } else {
-    summaryLines.push(`❌  Risk budget too small for any contract at this stop. Widen budget or tighten stop.`);
+    summaryLines.push(`❌ Risk budget too small for any contract at this stop. Widen budget or tighten stop.`);
   }
 
   embed.addFields({
-    name: '💡  Recommendation',
+    name: '💡 Recommendation',
     value: summaryLines.join('\n'),
     inline: false,
   });
