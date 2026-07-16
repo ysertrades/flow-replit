@@ -178,7 +178,7 @@ function calculateRisk(symbol, riskUsd, stopPoints) {
  * @returns {string}
  */
 function formatUsd(value) {
-  return `$${value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`.;
+  return `$${value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
 module.exports = { calculateRisk, formatUsd, FUTURES_SPECS };
