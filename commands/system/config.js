@@ -98,4 +98,5 @@ module.exports = {
             const embed = createServerEmbed('success', { title: 'Permission Removed', description: `Role **${role.name}** removed from "/${commandName}".` }, interaction.guild);
             await sendTempReply(interaction, embed);
         }
+    },
 };
