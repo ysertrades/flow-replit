@@ -99,4 +99,13 @@ module.exports = {
             await sendTempReply(interaction, embed);
         }
     },
+    // Futures Pairs
+    futuresPairs: [
+        { symbol: "NQ", tickSize: 0.25, tickValue: 5, microSymbol: "MNQ", microTickValue: 0.5 },
+        { symbol: "ES", tickSize: 0.25, tickValue: 12.5, microSymbol: "MES", microTickValue: 1.25 },
+        { symbol: "YM", tickSize: 1, tickValue: 5, microSymbol: "MYM", microTickValue: 0.5 },
+        { symbol: "RTY", tickSize: 0.1, tickValue: 5, microSymbol: "M2K", microTickValue: 0.5 },
+        { symbol: "GC", tickSize: 0.1, tickValue: 10, microSymbol: "MGC", microTickValue: 1 },
+        { symbol: "SI", tickSize: 0.005, tickValue: 25, microSymbol: "SIL", microTickValue: 5 }
+    ]
 };
