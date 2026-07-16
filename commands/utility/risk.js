@@ -1,59 +1,61 @@
-import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { calculateRisk, formatUsd, FUTURES_SPECS } from '../utils/riskCalculator.js';
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { calculateRisk, formatUsd, FUTURES_SPECS } = require('../../utils/riskCalculator.js');
 
 const symbolChoices = Object.keys(FUTURES_SPECS).map((sym) => ({
   name: sym,
   value: sym,
 }));
 
-export const data = new SlashCommandBuilder()
-  .setName('risk')
-  .setDescription('Calculate futures position size based on your risk and stop distance')
-  .addStringOption((option) =>
-    option
-      .setName('symbol')
-      .setDescription('Futures contract symbol (e.g. ES, NQ, GC)')
-      .setRequired(true)
-      .addChoices(...symbolChoices)
-  )
-  .addNumberOption((option) =>
-    option
-      .setName('risk')
-      .setDescription('Total risk amount in USD (e.g. 100)')
-      .setRequired(true)
-      .setMinValue(1)
-  )
-  .addNumberOption((option) =>
-    option
-      .setName('stop')
-      .setDescription('Stop distance in POINTS (e.g. 2.5)')
-      .setRequired(true)
-      .setMinValue(0.01)
-  );
+module.exports = {
+  data: new SlashCommandBuilder()
+    .setName('risk')
+    .setDescription('Calculate futures position size based on your risk and stop distance')
+    .addStringOption((option) =>
+      option
+        .setName('symbol')
+        .setDescription('Futures contract symbol (e.g. ES, NQ, GC)')
+        .setRequired(true)
+        .addChoices(...symbolChoices)
+    )
+    .addNumberOption((option) =>
+      option
+        .setName('risk')
+        .setDescription('Total risk amount in USD (e.g. 100)')
+        .setRequired(true)
+        .setMinValue(1)
+    )
+    .addNumberOption((option) =>
+      option
+        .setName('stop')
+        .setDescription('Stop distance in POINTS (e.g. 2.5)')
+        .setRequired(true)
+        .setMinValue(0.01)
+    ),
 
-export async function execute(interaction) {
-  const symbol = interaction.options.getString('symbol');
-  const riskUsd = interaction.options.getNumber('risk');
-  const stopPoints = interaction.options.getNumber('stop');
+  async execute(interaction) {
+    const symbol = interaction.options.getString('symbol');
+    const riskUsd = interaction.options.getNumber('risk');
+    const stopPoints = interaction.options.getNumber('stop');
 
-  const result = calculateRisk(symbol, riskUsd, stopPoints);
+    const result = calculateRisk(symbol, riskUsd, stopPoints);
 
-  if (result.error) {
-    return interaction.reply({
-      embeds: [
-        new EmbedBuilder()
-          .setColor(0xe74c3c)
-          .setTitle('⚠️ Invalid Input')
-          .setDescription(result.error)
-          .setTimestamp(),
-      ],
-      ephemeral: true,
-    });
-  }
+    if (result.error) {
+      return interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setColor(0xe74c3c)
+            .setTitle('⚠️ Invalid Input')
+            .setDescription(result.error)
+            .setTimestamp(),
+        ],
+        ephemeral: true,
+      });
+    }
 
-  const embed = buildRiskEmbed(result);
-  return interaction.reply({ embeds: [embed] });
-}
+    const embed = buildRiskEmbed(result);
+    return interaction.reply({ embeds: [embed] });
+  },
+};
 
 /**
  * Build the risk calculator embed
@@ -98,11 +100,9 @@ function buildRiskEmbed(result) {
     });
   }
 
-  // ── Separator ──────────────────────────────────────────────────────────────
   if (micro) {
     embed.addFields({ name: '\u200b', value: '\u200b', inline: false });
 
-    // Show micro if: needed (standard = 0) OR always alongside standard
     const microLabel = needsMicro ? '🔹  Micro Contract  *(fallback)*' : '🔹  Micro Contract  *(alternative)*';
 
     if (micro.contracts >= 1) {
@@ -126,7 +126,6 @@ function buildRiskEmbed(result) {
     }
   }
 
-  // ── Summary bar ───────────────────────────────────────────────────────────
   embed.addFields({ name: '\u200b', value: '\u200b', inline: false });
 
   const summaryLines = [];
