@@ -10,7 +10,7 @@ const FUTURES_SPECS = {
     tickValue: 12.5,
     pointValue: 50,
     microSymbol: 'MES',
-    color: 0x2ecc71,
+    color: 0x474747,
   },
   MES: {
     name: 'Micro E-mini S&P 500',
@@ -19,7 +19,7 @@ const FUTURES_SPECS = {
     tickValue: 1.25,
     pointValue: 5,
     microSymbol: null,
-    color: 0x27ae60,
+    color: 0x474747,
   },
   NQ: {
     name: 'E-mini Nasdaq-100',
@@ -28,7 +28,7 @@ const FUTURES_SPECS = {
     tickValue: 5,
     pointValue: 20,
     microSymbol: 'MNQ',
-    color: 0x3498db,
+    color: 0x474747,
   },
   MNQ: {
     name: 'Micro E-mini Nasdaq-100',
@@ -37,7 +37,7 @@ const FUTURES_SPECS = {
     tickValue: 0.5,
     pointValue: 2,
     microSymbol: null,
-    color: 0x2980b9,
+    color: 0x474747,
   },
   YM: {
     name: 'E-mini Dow',
@@ -46,7 +46,7 @@ const FUTURES_SPECS = {
     tickValue: 5,
     pointValue: 5,
     microSymbol: 'MYM',
-    color: 0xe67e22,
+    color: 0x474747,
   },
   MYM: {
     name: 'Micro E-mini Dow',
@@ -64,7 +64,7 @@ const FUTURES_SPECS = {
     tickValue: 5,
     pointValue: 50,
     microSymbol: 'M2K',
-    color: 0x9b59b6,
+    color: 0x474747,
   },
   M2K: {
     name: 'Micro E-mini Russell 2000',
@@ -73,7 +73,7 @@ const FUTURES_SPECS = {
     tickValue: 0.5,
     pointValue: 5,
     microSymbol: null,
-    color: 0x8e44ad,
+    color: 0x474747,
   },
   GC: {
     name: 'Gold Futures',
@@ -82,7 +82,7 @@ const FUTURES_SPECS = {
     tickValue: 10,
     pointValue: 100,
     microSymbol: 'MGC',
-    color: 0xf1c40f,
+    color: 0x474747,
   },
   MGC: {
     name: 'Micro Gold Futures',
@@ -91,7 +91,7 @@ const FUTURES_SPECS = {
     tickValue: 1,
     pointValue: 10,
     microSymbol: null,
-    color: 0xf39c12,
+    color: 0x474747,
   },
   SI: {
     name: 'Silver Futures',
@@ -100,7 +100,7 @@ const FUTURES_SPECS = {
     tickValue: 25,
     pointValue: 5000,
     microSymbol: 'SIL',
-    color: 0x95a5a6,
+    color: 0x474747,
   },
   SIL: {
     name: 'Micro Silver Futures',
@@ -109,7 +109,7 @@ const FUTURES_SPECS = {
     tickValue: 5,
     pointValue: 1000,
     microSymbol: null,
-    color: 0x7f8c8d,
+    color: 0x474747,
   },
 };
 
